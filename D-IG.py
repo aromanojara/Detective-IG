@@ -7,7 +7,7 @@ import getpass
 # Variables
 username = input("Ingrese su nombre de usuario: ")
 password = getpass.getpass("Ingrese su contraseña: ")
-user2check = input("Ingrese el usuario que quieraa checkear: ")
+user2check = input("Ingrese el usuario que quiere checkear: ")
 
 followers_path = 'C:\\Users\Angelo\Desktop\\followers.txt'
 faggots_path = 'C:\\Users\Angelo\Desktop\\faggots.txt'
@@ -58,7 +58,7 @@ for i in range(len(old_followers_list)):
     if check not in new_followers_list:
         faggots.append(check)
 
-if len(faggots > 0):
+if len(faggots) > 0:
     print('Los faggots son:')
     print("\n".join(faggots))
 else:
@@ -71,7 +71,7 @@ for i in range(len(new_followers_list)):
     if check not in old_followers_list:
         lovers.append(check)
 
-if len(lovers > 0):
+if len(lovers) > 0:
     print('Los lovers son:')
     print("\n".join(lovers))
 else:
