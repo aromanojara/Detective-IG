@@ -9,18 +9,15 @@ username = input("Ingrese su nombre de usuario: ")
 password = getpass.getpass("Ingrese su contraseña: ")
 user2check = input("Ingrese el usuario que quiere checkear: ")
 
-followers_path = 'C:\\Users\Angelo\Desktop\\followers.txt'
-faggots_path = 'C:\\Users\Angelo\Desktop\\faggots.txt'
-lovers_path = 'C:\\Users\Angelo\Desktop\\lovers.txt'
+# Paths
+followers_path = ".\\followers.txt"
+faggots_path = ".\\faggots.txt"
+lovers_path = ".\\lovers.txt"
 
+# Lists
 new_followers_list = []
 faggots = []
 lovers = []
-
-# Opening followers list
-followers_instance = open(followers_path, mode='r+')
-old_followers_list = simplejson.load(followers_instance)
-followers_instance.close()
 
 # Get instance
 L = instaloader.Instaloader()
@@ -44,13 +41,27 @@ if not (os.path.isfile(followers_path)):
     create_followers_list = open(followers_path, mode = "w+").close()
     print('El archivo followers.txt no existía, ahora ha sido creado')
 
+if not (os.path.isfile(faggots_path)):
+    create_followers_list = open(faggots_path, mode = "w+").close()
+    print('El archivo faggots.txt no existía, ahora ha sido creado')
+
+if not (os.path.isfile(lovers_path)):
+    create_followers_list = open(lovers_path, mode = "w+").close()
+    print('El archivo lovers.txt no existía, ahora ha sido creado')
+
+
 if os.stat(followers_path).st_size == 0:
     followers_instance = open(followers_path, mode = 'r+')
-    simplejson.dump(new_followers_list, followers_instance)
+    simplejson.dump(new_followers_list, followers_instance, indent=1)
     followers_instance.close()
     print('El archivo followers.txt estaba vacio, se llenó con los followers actuales')
     print("Se ha cerrado sesión")
     sys.exit(0)
+
+# Opening followers list
+followers_instance = open(followers_path, mode='r+')
+old_followers_list = simplejson.load(followers_instance)
+followers_instance.close()
 
 # Finding out who the faggots are
 for i in range(len(old_followers_list)):
@@ -75,28 +86,28 @@ if len(lovers) > 0:
     print('Los lovers son:')
     print("\n".join(lovers))
 else:
-    print('No se han encontrado faggots')
+    print('No se han encontrado lovers')
 
 
 # Updating new followers list
 print('Escribiendo en followers.txt')
 followers_instance = open(followers_path, mode='w').close()
 followers_instance = open(followers_path, mode='r+')
-simplejson.dump(new_followers_list, followers_instance)
+simplejson.dump(new_followers_list, followers_instance, indent=1)
 followers_instance.close()
 
 # Dumping faggots list
 print('Escribiendo en faggots.txt')
 faggots_file_instance = open(faggots_path, mode='w').close()
 faggots_file_instance = open(faggots_path, mode='r+')
-simplejson.dump(faggots, faggots_file_instance)
+simplejson.dump(faggots, faggots_file_instance, indent=1)
 faggots_file_instance.close()
 
 # Dumping lovers list
 print('Escribiendo en lovers.txt')
 lovers_file_instance = open(lovers_path, mode='w').close()
 lovers_file_instance = open(lovers_path, mode='r+')
-simplejson.dump(lovers, lovers_file_instance)
+simplejson.dump(lovers, lovers_file_instance, indent=1)
 lovers_file_instance.close()
 
 # Clearing lists
